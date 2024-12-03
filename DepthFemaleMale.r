@@ -387,6 +387,30 @@ all_chroms_eggs
 
 table(c_m$color)
 
+###Primerpair 1 and 2
+# Daten für Chromosom 3 filtern
+chrom1_data <- subset(c_m, chrom_num == 3)
+
+# Daten mit einer erweiterten Farbcodierung für beide Primerpaare
+chrom1_data$color <- ifelse(
+  (chrom1_data$X.1 >= 30299000 & chrom1_data$X.1 <= 30301500) | # Bereich Primerpaar 1
+  (chrom1_data$X.1 >= 30593000 & chrom1_data$X.1 <= 30594500),  # Bereich Primerpaar 2
+  "green", 
+  "blue"
+)
+
+# Manhattan-Plot mit ggplot2
+ggplot(chrom1_data, aes(x = X.1, y = X.2_log, color = color)) +
+  geom_point(size = 1) + # Punkte plotten
+  scale_color_manual(values = c("blue" = "blue", "green" = "green")) + # Farben zuweisen
+  labs(
+    title = "Sample A (male) Chromosome 3 with target regions of primer pairs 1 and 2 in green",
+    x = "Base Pair Position",
+    y = "log10 (amount of amplification)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") # Legende ausblenden
+
 ###Primerpair 1
 # Daten für Chromosom 3 filtern
 chrom1_data <- subset(c_m, chrom_num == 3)
@@ -656,6 +680,30 @@ ggplot(c_f, aes(x = chrom_num, y = X.2_log, color = color)) +
     axis.text.x = element_text(angle = 90, hjust = 1),  # X-Achse text drehen
     legend.position = "none"  # Legende ausblenden
   )
+
+###Primerpair 1 and 2
+# Daten für Chromosom 3 filtern
+chrom1_data <- subset(c_m, chrom_num == 3)
+
+# Daten mit einer erweiterten Farbcodierung für beide Primerpaare
+chrom1_data$color <- ifelse(
+  (chrom1_data$X.1 >= 30299000 & chrom1_data$X.1 <= 30301500) | # Bereich Primerpaar 1
+  (chrom1_data$X.1 >= 30593000 & chrom1_data$X.1 <= 30594500),  # Bereich Primerpaar 2
+  "green", 
+  "blue"
+)
+
+# Manhattan-Plot mit ggplot2
+ggplot(chrom1_data, aes(x = X.1, y = X.2_log, color = color)) +
+  geom_point(size = 1) + # Punkte plotten
+  scale_color_manual(values = c("blue" = "blue", "green" = "green")) + # Farben zuweisen
+  labs(
+    title = "Sample J (female) Chromosome 3 with target regions of primer pairs 1 and 2 in green",
+    x = "Base Pair Position",
+    y = "log10 (amount of amplification)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") # Legende ausblenden
 
 ###Primerpair 1
 # Daten für Chromosom 3 filtern
